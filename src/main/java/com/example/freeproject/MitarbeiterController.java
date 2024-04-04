@@ -14,7 +14,7 @@ public class MitarbeiterController {
     }
 
     @GetMapping("/mitarbeiter")
-        public List<Mitarbeiter> getAllMitarbeiter(){
+    public List<Mitarbeiter> getAllMitarbeiter(){
         return mitarbeiterRepository.findAll();
         }
     @GetMapping("/hallo/{mitarbeiterID}")
