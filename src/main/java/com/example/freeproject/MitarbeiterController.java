@@ -32,4 +32,14 @@ public class MitarbeiterController {
         return "Moin " + name + "!";
     }
 
+    @DeleteMapping("/remove/{mitarbeiterID}")
+    public String fireWorker(@PathVariable int mitarbeiterID) {
+        Mitarbeiter mitarbeiter = mitarbeiterRepository.findByMitarbeiterID(mitarbeiterID);
+        if (mitarbeiter != null) {
+            mitarbeiterRepository.deleteById((mitarbeiter.getId()));
+            return "Mitarbeiter " + mitarbeiter.getName() + " wurde gefeuert!";
+        } else {
+            return "Mitarbeiter mit der ID: " + mitarbeiterID + " nicht gefunden!";
+        }
+    }
 }
