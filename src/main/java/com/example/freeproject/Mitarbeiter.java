@@ -12,8 +12,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 public class Mitarbeiter {
     @Id
-    String ObjectID;
-    int id;
+    String id;
+    int mitarbeiterID;
     String name;
     int age;
     String description;

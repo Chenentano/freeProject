@@ -1,10 +1,6 @@
 package com.example.freeproject;
 
-import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -12,7 +8,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class MitarbeiterController {
     private MitarbeiterRepository mitarbeiterRepository;
-    @Autowired
+
     public MitarbeiterController(MitarbeiterRepository mitarbeiterRepository){
         this.mitarbeiterRepository = mitarbeiterRepository;
     }
@@ -21,4 +17,13 @@ public class MitarbeiterController {
         public List<Mitarbeiter> getAllMitarbeiter(){
         return mitarbeiterRepository.findAll();
         }
+    @GetMapping("/hallo/{mitarbeiterID}")
+    public String greet(@PathVariable int mitarbeiterID) {
+        Mitarbeiter mitarbeiter = mitarbeiterRepository.findByMitarbeiterID(mitarbeiterID);
+        if (mitarbeiter != null) {
+            return "Hallo " + mitarbeiter.getName();
+        } else {
+            return "Mitarbeiter mit der ID " + mitarbeiterID + " nicht gefunden";
+        }
+    }
 }
