@@ -26,4 +26,10 @@ public class MitarbeiterController {
             return "Mitarbeiter mit der ID " + mitarbeiterID + " nicht gefunden";
         }
     }
+
+    @PostMapping("/moin")
+    public String moin(@RequestParam String name){
+        return "Moin " + name + "!";
+    }
+
 }
