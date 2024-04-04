@@ -32,6 +32,19 @@ public class MitarbeiterController {
         return "Moin " + name + "!";
     }
 
+    @PutMapping("/update/{mitarbeiterID}")
+    public String updateName(@PathVariable int mitarbeiterID, String name){
+        Mitarbeiter mitarbeiter = mitarbeiterRepository.findByMitarbeiterID(mitarbeiterID);
+        if (mitarbeiter != null) {
+            String oldName = mitarbeiter.getName();
+            mitarbeiter.setName(name);
+            mitarbeiterRepository.save(mitarbeiter);
+            return "Mitarbeiter " + oldName + " wurde umbenannt in " + mitarbeiter.getName() ;
+        } else {
+            return "Mitarbeiter mit der ID: " + mitarbeiterID + " nicht gefunden!";
+        }
+    }
+
     @DeleteMapping("/remove/{mitarbeiterID}")
     public String fireWorker(@PathVariable int mitarbeiterID) {
         Mitarbeiter mitarbeiter = mitarbeiterRepository.findByMitarbeiterID(mitarbeiterID);
